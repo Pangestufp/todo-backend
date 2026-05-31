@@ -36,13 +36,13 @@ app.get("/todos/:id", (req, res) => {
 app.post("/todos", (req, res)=>{
     const {id, title, description, status, created_date} = req.body
 
-    if (id == "" || title == "" || description == "" || status == "" || created_date == ""){
+    if (!id || !title || !description || !status || !created_date) {
         return res.status(400).json({
             message: "Bad request"
         })
     }
 
-    newtodo = {id:id, title:title, description:description, status:status, created_date:created_date}
+    const newtodo = {id:id, title:title, description:description, status:status, created_date:created_date}
 
     todos.push(newtodo)
 
